@@ -1,7 +1,8 @@
-package com.zerox.weatherapp
+package com.zerox.weatherapp.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.zerox.weatherapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
