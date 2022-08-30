@@ -48,4 +48,12 @@ dependencies {
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // viewmodels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
+    // livedata
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
+    // activity
+    implementation 'androidx.activity:activity-ktx:1.5.0'
+    // fragment
+    implementation 'androidx.fragment:fragment-ktx:1.5.0'
 }
