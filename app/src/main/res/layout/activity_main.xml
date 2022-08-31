@@ -9,7 +9,7 @@
     tools:context=".ui.view.MainActivity">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/sv_country"
+        android:id="@+id/sv_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
         android:textColor="@color/text_grey"
         android:textSize="105sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sv_country" />
+        app:layout_constraintTop_toBottomOf="@id/sv_city" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_section1"
@@ -38,7 +38,7 @@
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_temp">
+        app:layout_constraintTop_toBottomOf="@id/tv_sky">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -303,17 +303,17 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/tv_temp"
-        app:layout_constraintTop_toBottomOf="@id/sv_country" />
+        app:layout_constraintTop_toBottomOf="@id/sv_city" />
 
     <TextView
         android:id="@+id/tv_sky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:textColor="@color/text_grey"
-        android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@id/tv_temp"
-        app:layout_constraintTop_toBottomOf="@id/tv_measure_unit" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_temp" />
     <ImageView
         android:id="@+id/iv_weather_image"
         android:layout_width="wrap_content"
@@ -333,7 +333,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sv_country" />
+        app:layout_constraintTop_toBottomOf="@id/sv_city" />
 
     <ProgressBar
         android:id="@+id/pb_loading_data"

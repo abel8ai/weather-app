@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // listener to update weather data when the user submits query
-        binding.svCountry.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        binding.svCity.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null){
@@ -87,13 +87,15 @@ class MainActivity : AppCompatActivity() {
         // show weather conditions and temp
         binding.tvCity.text = weatherData.name
         binding.tvTemp.text = weatherData.main.temp.toInt().toString()
+        binding.tvSky.text = weatherData.weather[0].description
 
         // get weather icon
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
         Picasso.get().load(imageUri).into(binding.ivWeatherImage)
 
         // set current location in search bar
-        binding.svCountry.queryHint = weatherData.sys.country
+        binding.svCity.setQuery(weatherData.name, false)
+        binding.svCity.clearFocus()
 
         // show first section data retrieved from api
         binding.tvPressure.text = weatherData.main.pressure.toString()
