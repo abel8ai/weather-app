@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         binding.svCountry.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                
+
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadData(latitude: Double, longitude: Double) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                weatherViewModel.getWeather("weather?appid=${WEATHER_API_KEY}&lat=$latitude&lon=$longitude&units=metric")
+                weatherViewModel.getWeatherByCoordinates(WEATHER_API_KEY, latitude, longitude)
             } catch (exception: Exception) {
                 runOnUiThread {
                     Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
