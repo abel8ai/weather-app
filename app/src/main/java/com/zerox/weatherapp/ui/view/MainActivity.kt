@@ -45,6 +45,17 @@ class MainActivity : AppCompatActivity() {
         binding.svCountry.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null){
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            weatherViewModel.getWeatherByCountry(WEATHER_API_KEY,query)
+                        } catch (exception: Exception) {
+                            runOnUiThread {
+                                Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
 
                 return false
             }
@@ -60,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         getLocationPermission()
+
         // observer to update view once the data is retrieved from api
         weatherViewModel.weatherModel.observe(this, Observer {
             weatherData = it!!

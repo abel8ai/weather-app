@@ -22,6 +22,12 @@ class WeatherViewModel @Inject constructor(
             weatherModel.postValue(weatherResponse)
         else throw FailedApiResponseException()
     }
+    suspend fun getWeatherByCountry(apiKey: String,country:String){
+        val weatherResponse = weatherService.getWeather("weather?appid=$apiKey&q=$country&units=metric")
+        if (weatherResponse != null)
+            weatherModel.postValue(weatherResponse)
+        else throw FailedApiResponseException()
+    }
     fun getIcon(iconId:String):String{
         return "http://openweathermap.org/img/wn/$iconId@2x.png"
     }
