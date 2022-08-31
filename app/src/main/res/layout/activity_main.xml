@@ -303,7 +303,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/tv_temp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/sv_country" />
 
     <TextView
         android:id="@+id/tv_sky"
@@ -336,10 +336,11 @@
         app:layout_constraintTop_toBottomOf="@id/sv_country" />
 
     <ProgressBar
+        android:id="@+id/pb_loading_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundTint="@color/white"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

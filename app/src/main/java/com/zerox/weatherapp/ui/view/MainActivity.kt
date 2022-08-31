@@ -7,6 +7,7 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null){
+                    binding.pbLoadingData.visibility = View.VISIBLE
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             weatherViewModel.getWeatherByCity(WEATHER_API_KEY,query)
@@ -76,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         // observer to update view once the data is retrieved from api
         weatherViewModel.weatherModel.observe(this, Observer {
             weatherData = it!!
+            binding.pbLoadingData.visibility = View.INVISIBLE
             showWeatherData()
         })
     }
@@ -106,6 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadWeatherFromLocation(latitude: Double, longitude: Double) {
+        binding.pbLoadingData.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 weatherViewModel.getWeatherByCoordinates(WEATHER_API_KEY, latitude, longitude)
