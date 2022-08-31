@@ -21,4 +21,7 @@ class WeatherViewModel @Inject constructor(
             weatherModel.postValue(weatherResponse)
         else throw FailedApiResponseException()
     }
+    fun getIcon(iconId:String):String{
+        return "http://openweathermap.org/img/wn/$iconId@2x.png"
+    }
 }
