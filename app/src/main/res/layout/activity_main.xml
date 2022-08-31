@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:text="22"
+        android:text="@string/wait"
         android:textColor="@color/text_grey"
         android:textSize="105sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pressure: "
+                    android:text="@string/pressure"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -56,7 +56,13 @@
                     android:id="@+id/tv_pressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="34hPa"
+                    android:text="@string/wait"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hpa"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -70,7 +76,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Humidity: "
+                    android:text="@string/humidity"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -79,7 +85,13 @@
                     android:id="@+id/tv_humidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="53%"
+                    android:text="@string/wait"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/percent"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -93,7 +105,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Visibility: "
+                    android:text="@string/visibility"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -102,7 +114,13 @@
                     android:id="@+id/tv_visibility"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10000m"
+                    android:text="@string/wait"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meters"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -117,7 +135,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sea Level: "
+                    android:text="@string/sea_level"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -126,7 +144,13 @@
                     android:id="@+id/tv_sea_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1100m"
+                    android:text="@string/wait"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meters"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -141,7 +165,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_section1"
-        android:text="Wind"
+        android:text="@string/wind"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:textColor="@color/text_grey"
@@ -177,7 +201,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Speed: "
+                    android:text="@string/speed"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -186,7 +210,13 @@
                     android:id="@+id/tv_wind_speed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50km/h"
+                    android:text="@string/wait"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/m_s"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -200,7 +230,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Degree: "
+                    android:text="@string/degree"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -209,7 +239,13 @@
                     android:id="@+id/tv_wind_degree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="237°"
+                    android:text="@string/wait"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deg"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -224,7 +260,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gusts: "
+                    android:text="@string/gust"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -233,9 +269,16 @@
                     android:id="@+id/tv_wind_gusts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.45"
+                    android:text="@string/wait"
                     android:textColor="@color/text_grey"
                     android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/m_s"
+                    android:textColor="@color/text_grey"
+                    android:textSize="20sp" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -247,7 +290,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="°C"
+        android:text="@string/c_deg"
         android:textColor="@color/text_grey"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -259,7 +302,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="clear sky"
         android:textColor="@color/text_grey"
         android:textSize="25sp"
         app:layout_constraintStart_toEndOf="@id/tv_temp"
@@ -268,6 +310,7 @@
         android:id="@+id/iv_weather_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/common_full_open_on_phone"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_city"/>
@@ -277,7 +320,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="City"
+        android:text="@string/wait"
         android:textColor="@color/text_grey"
         android:textSize="20sp"
         android:textStyle="bold"

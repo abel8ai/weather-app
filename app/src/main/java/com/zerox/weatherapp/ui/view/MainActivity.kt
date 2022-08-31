@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val weatherViewModel: WeatherViewModel by viewModels()
-    private val WEATHER_API_KEY = "9dbf9e303c0cfbcd910c6a20a5d9b0af"
     private lateinit var weatherData: WeatherResponse
     private lateinit var binding: ActivityMainBinding
 
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun showWeatherData() {
         // show weather conditions and temp
         binding.tvCity.text = weatherData.name
-        binding.tvTemp.text = weatherData.main.temp.toString()
+        binding.tvTemp.text = weatherData.main.temp.toInt().toString()
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
         Picasso.get().load(imageUri).into(binding.ivWeatherImage)
 
@@ -160,5 +159,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
         private const val KEY_LOCATION = "location"
+        private const val WEATHER_API_KEY = "9dbf9e303c0cfbcd910c6a20a5d9b0af"
     }
 }
