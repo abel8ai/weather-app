@@ -22,8 +22,8 @@ class WeatherViewModel @Inject constructor(
             weatherModel.postValue(weatherResponse)
         else throw FailedApiResponseException()
     }
-    suspend fun getWeatherByCountry(apiKey: String,country:String){
-        val weatherResponse = weatherService.getWeather("weather?appid=$apiKey&q=$country&units=metric")
+    suspend fun getWeatherByCity(apiKey: String, city:String){
+        val weatherResponse = weatherService.getWeather("weather?appid=$apiKey&q=$city&units=metric")
         if (weatherResponse != null)
             weatherModel.postValue(weatherResponse)
         else throw FailedApiResponseException()

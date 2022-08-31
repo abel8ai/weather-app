@@ -42,13 +42,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // listener to update weather data when the user submits query
         binding.svCountry.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null){
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            weatherViewModel.getWeatherByCountry(WEATHER_API_KEY,query)
+                            weatherViewModel.getWeatherByCity(WEATHER_API_KEY,query)
                         } catch (exception: Exception) {
                             runOnUiThread {
                                 Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
@@ -83,8 +84,12 @@ class MainActivity : AppCompatActivity() {
         // show weather conditions and temp
         binding.tvCity.text = weatherData.name
         binding.tvTemp.text = weatherData.main.temp.toInt().toString()
+
+        // get weather icon
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
         Picasso.get().load(imageUri).into(binding.ivWeatherImage)
+
+        // set current location in search bar
         binding.svCountry.queryHint = weatherData.sys.country
 
         // show first section data retrieved from api
@@ -100,7 +105,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadData(latitude: Double, longitude: Double) {
+    private fun loadWeatherFromLocation(latitude: Double, longitude: Double) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 weatherViewModel.getWeatherByCoordinates(WEATHER_API_KEY, latitude, longitude)
@@ -167,12 +172,12 @@ class MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         lastKnownLocation = task.result
                         if (lastKnownLocation != null) {
-                            loadData(lastKnownLocation!!.latitude, lastKnownLocation!!.longitude)
+                            loadWeatherFromLocation(lastKnownLocation!!.latitude, lastKnownLocation!!.longitude)
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
                         Log.e(TAG, "Exception: %s", task.exception)
-                        loadData(defaultLocation.latitude, defaultLocation.longitude)
+                        loadWeatherFromLocation(defaultLocation.latitude, defaultLocation.longitude)
                     }
                 }
             }
