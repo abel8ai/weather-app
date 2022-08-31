@@ -8,6 +8,14 @@
     android:background="@color/sunny_blue"
     tools:context=".ui.view.MainActivity">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/sv_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/tv_temp"
         android:layout_width="wrap_content"
@@ -18,7 +26,7 @@
         android:textColor="@color/text_grey"
         android:textSize="105sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/sv_country" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_section1"
@@ -325,7 +333,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/sv_country" />
 
     <ProgressBar
         android:layout_width="wrap_content"

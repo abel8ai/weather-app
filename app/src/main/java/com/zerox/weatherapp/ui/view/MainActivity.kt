@@ -7,6 +7,7 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -41,6 +42,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.svCountry.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION)
@@ -61,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvTemp.text = weatherData.main.temp.toInt().toString()
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
         Picasso.get().load(imageUri).into(binding.ivWeatherImage)
+        binding.svCountry.queryHint = weatherData.sys.country
 
         // show first section data retrieved from api
         binding.tvPressure.text = weatherData.main.pressure.toString()
