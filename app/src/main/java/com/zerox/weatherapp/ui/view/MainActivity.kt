@@ -55,11 +55,7 @@ class MainActivity : AppCompatActivity() {
                             weatherViewModel.getWeatherByCity(WEATHER_API_KEY, query)
                         } catch (exception: Exception) {
                             runOnUiThread {
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    exception.message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -201,6 +197,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+            else
+                loadWeatherFromLocation(defaultLocation.latitude, defaultLocation.longitude)
         } catch (e: SecurityException) {
             Log.e("Exception: %s", e.message, e)
         }
