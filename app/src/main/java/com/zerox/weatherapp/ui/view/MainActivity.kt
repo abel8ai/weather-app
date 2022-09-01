@@ -48,14 +48,18 @@ class MainActivity : AppCompatActivity() {
         binding.svCity.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null){
+                if (query != null) {
                     binding.pbLoadingData.visibility = View.VISIBLE
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            weatherViewModel.getWeatherByCity(WEATHER_API_KEY,query)
+                            weatherViewModel.getWeatherByCity(WEATHER_API_KEY, query)
                         } catch (exception: Exception) {
                             runOnUiThread {
-                                Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    exception.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
@@ -63,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
@@ -90,8 +95,10 @@ class MainActivity : AppCompatActivity() {
         binding.tvTemp.text = weatherData.main.temp.toInt().toString()
         val sky = weatherData.weather[0].description
         binding.tvSky.text = sky
-        if(sky.contains("cloud"))
+        if (sky.contains("cloud"))
             binding.clContainer.setBackgroundColor(resources.getColor(R.color.storm_grey))
+        else if (sky.contains("clear"))
+            binding.clContainer.setBackgroundColor(resources.getColor(R.color.sunny_blue))
 
         // get weather icon
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
@@ -182,7 +189,10 @@ class MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         lastKnownLocation = task.result
                         if (lastKnownLocation != null) {
-                            loadWeatherFromLocation(lastKnownLocation!!.latitude, lastKnownLocation!!.longitude)
+                            loadWeatherFromLocation(
+                                lastKnownLocation!!.latitude,
+                                lastKnownLocation!!.longitude
+                            )
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
