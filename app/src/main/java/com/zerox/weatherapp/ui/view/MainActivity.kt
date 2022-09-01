@@ -7,6 +7,8 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -16,6 +18,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.squareup.picasso.Picasso
+import com.zerox.weatherapp.R
 import com.zerox.weatherapp.data.model.entites.weather.WeatherResponse
 import com.zerox.weatherapp.databinding.ActivityMainBinding
 import com.zerox.weatherapp.ui.view_model.WeatherViewModel
@@ -41,6 +44,35 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // listener to update weather data when the user submits query
+        binding.svCity.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    binding.pbLoadingData.visibility = View.VISIBLE
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            weatherViewModel.getWeatherByCity(WEATHER_API_KEY, query)
+                        } catch (exception: Exception) {
+                            runOnUiThread {
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    exception.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                }
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION)
@@ -48,9 +80,11 @@ class MainActivity : AppCompatActivity() {
         // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         getLocationPermission()
+
         // observer to update view once the data is retrieved from api
         weatherViewModel.weatherModel.observe(this, Observer {
             weatherData = it!!
+            binding.pbLoadingData.visibility = View.INVISIBLE
             showWeatherData()
         })
     }
@@ -59,8 +93,20 @@ class MainActivity : AppCompatActivity() {
         // show weather conditions and temp
         binding.tvCity.text = weatherData.name
         binding.tvTemp.text = weatherData.main.temp.toInt().toString()
+        val sky = weatherData.weather[0].description
+        binding.tvSky.text = sky
+        if (sky.contains("cloud"))
+            binding.clContainer.setBackgroundColor(resources.getColor(R.color.storm_grey))
+        else if (sky.contains("clear"))
+            binding.clContainer.setBackgroundColor(resources.getColor(R.color.sunny_blue))
+
+        // get weather icon
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
         Picasso.get().load(imageUri).into(binding.ivWeatherImage)
+
+        // set current location in search bar
+        binding.svCity.setQuery(weatherData.name, false)
+        binding.svCity.clearFocus()
 
         // show first section data retrieved from api
         binding.tvPressure.text = weatherData.main.pressure.toString()
@@ -75,10 +121,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadData(latitude: Double, longitude: Double) {
+    private fun loadWeatherFromLocation(latitude: Double, longitude: Double) {
+        binding.pbLoadingData.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                weatherViewModel.getWeather("weather?appid=${WEATHER_API_KEY}&lat=$latitude&lon=$longitude&units=metric")
+                weatherViewModel.getWeatherByCoordinates(WEATHER_API_KEY, latitude, longitude)
             } catch (exception: Exception) {
                 runOnUiThread {
                     Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
@@ -142,12 +189,15 @@ class MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         lastKnownLocation = task.result
                         if (lastKnownLocation != null) {
-                            loadData(lastKnownLocation!!.latitude, lastKnownLocation!!.longitude)
+                            loadWeatherFromLocation(
+                                lastKnownLocation!!.latitude,
+                                lastKnownLocation!!.longitude
+                            )
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
                         Log.e(TAG, "Exception: %s", task.exception)
-                        loadData(defaultLocation.latitude, defaultLocation.longitude)
+                        loadWeatherFromLocation(defaultLocation.latitude, defaultLocation.longitude)
                     }
                 }
             }
