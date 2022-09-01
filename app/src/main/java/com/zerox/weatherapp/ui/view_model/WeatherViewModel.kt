@@ -29,6 +29,6 @@ class WeatherViewModel @Inject constructor(
         else throw FailedApiResponseException()
     }
     fun getIcon(iconId:String):String{
-        return "http://openweathermap.org/img/wn/$iconId@2x.png"
+        return "https://openweathermap.org/img/wn/$iconId@2x.png"
     }
 }

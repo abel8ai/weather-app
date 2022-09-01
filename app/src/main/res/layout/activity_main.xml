@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pressure"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -66,13 +66,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hpa"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/humidity"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -95,13 +95,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/percent"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/visibility"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -124,13 +124,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/meters"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sea_level"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -154,13 +154,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/meters"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/speed"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -220,13 +220,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/m_s"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -240,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/degree"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -249,13 +249,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/deg"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -270,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/gust"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -279,13 +279,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/m_s"
                     android:textColor="@color/text_grey"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -316,9 +316,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_temp" />
     <ImageView
         android:id="@+id/iv_weather_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/common_full_open_on_phone"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_city"/>

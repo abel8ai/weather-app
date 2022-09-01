@@ -18,6 +18,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.squareup.picasso.Picasso
+import com.zerox.weatherapp.R
 import com.zerox.weatherapp.data.model.entites.weather.WeatherResponse
 import com.zerox.weatherapp.databinding.ActivityMainBinding
 import com.zerox.weatherapp.ui.view_model.WeatherViewModel
@@ -87,7 +88,10 @@ class MainActivity : AppCompatActivity() {
         // show weather conditions and temp
         binding.tvCity.text = weatherData.name
         binding.tvTemp.text = weatherData.main.temp.toInt().toString()
-        binding.tvSky.text = weatherData.weather[0].description
+        val sky = weatherData.weather[0].description
+        binding.tvSky.text = sky
+        if(sky.contains("cloud"))
+            binding.clContainer.setBackgroundColor(resources.getColor(R.color.storm_grey))
 
         // get weather icon
         val imageUri = weatherViewModel.getIcon(weatherData.weather[0].icon)
