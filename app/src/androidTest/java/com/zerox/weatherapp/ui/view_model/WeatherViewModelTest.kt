@@ -1,4 +1,4 @@
-package com.zerox.randomuserapp.ui.view_model
+package com.zerox.weatherapp.ui.view_model
 
 
 import android.os.Build.VERSION_CODES.Q
@@ -6,9 +6,7 @@ import android.os.Build.VERSION_CODES.Q
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth
 import com.zerox.weatherapp.data.network.WeatherService
-import com.zerox.weatherapp.ui.view_model.WeatherViewModel
 import com.zerox.weatherapp.ui.view_model.exceptions.FailedApiResponseException
-import com.zerox.weatherapp.ui.view_model.getorAwaitValue
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -32,15 +30,12 @@ internal class WeatherViewModelTest{
     @MockK
     private lateinit var weatherService: WeatherService
     private lateinit var weatherViewModel: WeatherViewModel
-    private val url = "?results=50&seed=abc&page=1&inc=name,email,picture,location"
-    private val email = "laura.woods@example.com"
-
 
     @Before
     fun initialize(){
         MockKAnnotations.init(this)
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://randomuser.me/api/1.4/")
+            .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         weatherService = WeatherService(retrofit)
