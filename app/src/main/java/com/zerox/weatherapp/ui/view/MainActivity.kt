@@ -190,6 +190,8 @@ class MainActivity : AppCompatActivity() {
                                 lastKnownLocation!!.longitude
                             )
                         }
+                        else
+                            Toast.makeText(this@MainActivity,"Couldn't get location. Check that your gps is active",Toast.LENGTH_LONG).show()
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
                         Log.e(TAG, "Exception: %s", task.exception)
