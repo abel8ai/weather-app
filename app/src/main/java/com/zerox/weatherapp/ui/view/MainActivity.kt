@@ -1,16 +1,20 @@
 package com.zerox.weatherapp.ui.view
 
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -26,6 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -69,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // Retrieve location and camera position from saved instance state.
+        // Retrieve location from saved instance state.
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION)
         }
@@ -190,6 +195,8 @@ class MainActivity : AppCompatActivity() {
                                 lastKnownLocation!!.longitude
                             )
                         }
+                        else
+                            Toast.makeText(this@MainActivity,"Couldn't get location. Check that your gps is active",Toast.LENGTH_LONG).show()
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
                         Log.e(TAG, "Exception: %s", task.exception)
@@ -202,6 +209,16 @@ class MainActivity : AppCompatActivity() {
         } catch (e: SecurityException) {
             Log.e("Exception: %s", e.message, e)
         }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        if (hasFocus)
+            getDeviceLocation()
+        super.onWindowFocusChanged(hasFocus)
+    }
+    override fun onResume() {
+        getDeviceLocation()
+        super.onResume()
     }
 
     companion object {
