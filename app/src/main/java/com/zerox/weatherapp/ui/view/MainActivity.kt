@@ -1,13 +1,9 @@
 package com.zerox.weatherapp.ui.view
 
 import android.Manifest
-import android.content.BroadcastReceiver
 import android.content.ContentValues.TAG
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -196,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
                         else
-                            Toast.makeText(this@MainActivity,"Couldn't get location. Check that your gps is active",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity,"Couldn't get location. Check that your gps is active",Toast.LENGTH_SHORT).show()
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
                         Log.e(TAG, "Exception: %s", task.exception)
@@ -215,10 +211,6 @@ class MainActivity : AppCompatActivity() {
         if (hasFocus)
             getDeviceLocation()
         super.onWindowFocusChanged(hasFocus)
-    }
-    override fun onResume() {
-        getDeviceLocation()
-        super.onResume()
     }
 
     companion object {
