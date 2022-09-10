@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val a = supportActionBar
         setContentView(binding.root)
 
         // listener to update weather data when the user submits query
@@ -64,7 +65,6 @@ class MainActivity : AppCompatActivity() {
 
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }

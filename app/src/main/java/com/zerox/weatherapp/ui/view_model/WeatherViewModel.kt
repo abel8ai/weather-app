@@ -1,11 +1,9 @@
 package com.zerox.weatherapp.ui.view_model
 
-import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zerox.weatherapp.data.model.entites.weather.WeatherResponse
 import com.zerox.weatherapp.data.network.WeatherService
-import com.zerox.weatherapp.ui.view.MainActivity
 import com.zerox.weatherapp.ui.view_model.exceptions.FailedApiResponseException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
