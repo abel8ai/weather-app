@@ -1,5 +1,6 @@
 package com.zerox.weatherapp.ui.view_model
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zerox.weatherapp.data.model.entites.weather.WeatherResponse
@@ -12,18 +13,19 @@ import javax.inject.Inject
 class WeatherViewModel @Inject constructor(
     private val weatherService: WeatherService
 ):ViewModel(){
-    val weatherModel = MutableLiveData<WeatherResponse?>()
+    private val _weatherModel = MutableLiveData<WeatherResponse?>()
+    val weatherModel : LiveData<WeatherResponse?> get() = _weatherModel
 
     suspend fun getWeatherByCoordinates(apiKey:String,latitude: Double, longitude:Double){
         val weatherResponse = weatherService.getWeather("weather?appid=$apiKey&lat=$latitude&lon=$longitude&units=metric")
         if (weatherResponse != null)
-            weatherModel.postValue(weatherResponse)
+            _weatherModel.value = weatherResponse
         else throw FailedApiResponseException()
     }
     suspend fun getWeatherByCity(apiKey: String, city:String){
         val weatherResponse = weatherService.getWeather("weather?appid=$apiKey&q=$city&units=metric")
         if (weatherResponse != null)
-            weatherModel.postValue(weatherResponse)
+            _weatherModel.value = weatherResponse
         else throw FailedApiResponseException()
     }
     fun getIcon(iconId:String):String{

@@ -5,6 +5,7 @@ import android.os.Build.VERSION_CODES.Q
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth
+import com.zerox.weatherapp.data.network.WeatherApiClient
 import com.zerox.weatherapp.data.network.WeatherService
 import com.zerox.weatherapp.ui.view_model.exceptions.FailedApiResponseException
 import io.mockk.MockKAnnotations
@@ -38,7 +39,8 @@ internal class WeatherViewModelTest{
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        weatherService = WeatherService(retrofit)
+        val weatherApiClient = retrofit.create(WeatherApiClient::class.java)
+        weatherService = WeatherService(weatherApiClient)
         weatherViewModel = WeatherViewModel(weatherService)
         weatherService = mockk()
     }
